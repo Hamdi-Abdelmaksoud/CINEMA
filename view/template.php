@@ -18,10 +18,15 @@
                 <a href="index.php?action=listActeurs">Liste des acteurs</a>
             </li>
             <li>
-                <a href="index.php?action=listRealisateurs">Liste des realisateurs</a>
+                <a href="index.php?action=listRealisateurs">Liste des réalisateurs</a>
             </li>
             <li>
-                <a href=""></a>
+                <!-- <div>filter
+                    <select name="genre" id="genre">
+                        <option value="action"><a href="index.php?action=genre"> action</a></option>
+                        <option value="romance"><a href="index.php?action=genre"> romance</a></option>
+                    </select>
+                </div> -->
             </li>
         </ul>
     </nav>

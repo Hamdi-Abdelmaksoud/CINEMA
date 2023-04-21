@@ -23,5 +23,10 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
         case "listRealisateurs":
             $ctrlCinema->listRealisateurs();
             break;
+        // case 'genre':
+        //     $ctrlCinema->genre();
+        case 'infofilm':
+            $ctrlCinema->infofilm($_GET["id"]);
+            break;
     }
 }
