@@ -15,7 +15,4 @@ public static function seConnecter(){
             return $ex->getMessage();
         }
 }
-
-
-
 } 

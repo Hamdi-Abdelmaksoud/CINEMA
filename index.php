@@ -11,3 +11,4 @@ if(isset($_GET["action"])){
         case "listActeurs" :$ctrlCinema->listActeurs();break;
     }
 }
+?>
