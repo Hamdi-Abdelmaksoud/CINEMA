@@ -18,7 +18,7 @@
                 <a href="index.php?action=listActeurs">Liste des acteurs</a>
             </li>
             <li>
-                <a href=""></a>
+                <a href="index.php?action=listRealisateurs">Liste des realisateurs</a>
             </li>
             <li>
                 <a href=""></a>
