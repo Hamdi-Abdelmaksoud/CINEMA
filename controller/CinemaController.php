@@ -46,7 +46,7 @@ class CinemaController
         $requete->execute(["id_film" => $id]);
 
         $requeteCasting = $pdo->prepare("
-        SELECT CONCAT(p.nom,' ',p.prenom) FROM film
+        SELECT p.nom,p.prenom FROM film
 INNER JOIN jouer  j ON j.id_film=film.id_film
 INNER JOIN acteur a ON a.id_acteur=j.id_acteur
 INNER JOIN personne p ON p.id_personne=a.id_personne
