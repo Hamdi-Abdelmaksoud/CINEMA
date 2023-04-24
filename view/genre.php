@@ -1,31 +1,22 @@
 <?php
 
-ob_start(); ?>
+ob_start(); 
+$genre=$requete->fetchAll();
+$type=$requetelibelle->fetch();?>
 
-<p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?> films de type </p>
+<p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?> films de type <?=$type["libelle"] ?></p>
+<?php 
+foreach($genre as $film)
+{?>
+<a href="index.php?action=infofilm&id=.<?=$film["id_film"] ?>"><?=$film["titre"]."</a> sorti le ".$film["annee_sortie_fr"]."<br>" ?>
+<?php } ?>
+
+
+
 <table class="uk-table uk-table-striped">
-    <thead>
-        <tr>
-            <th>Titre</th>
-            <th>annee_sortie_fr</th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach ($requete->fetchAll() as $genre) { ?>
-            <tr>
-                <td><?= $genre["titre"] ?></td>
-                <td><?= $genre["annee_sortie_fr"] ?></td>
-               
-            </tr>
-        <?php } ?>
-
-    </tbody>
-</table>
-
+  
 <?php
 $titre = "Films";
-$titre_secondaire = "Liste des acteurs";
+$titre_secondaire = "Liste des films par genre";
 $contenu = ob_get_clean();
 require "view/template.php"; ?>

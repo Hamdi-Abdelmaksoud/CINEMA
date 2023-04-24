@@ -53,12 +53,21 @@ class CinemaController
         WHERE film.id_film= :id_film");
         $requeteCasting->execute(["id_film" => $id]);
         $requeteClasser=$pdo->prepare("
-        SELECT g.libelle FROM genre g
+        SELECT g.libelle,c.id_genre FROM genre g
 INNER JOIN classer c ON c.id_genre=g.id_genre
 WHERE c.id_film=:id_film
         
         ");
         $requeteClasser->execute(["id_film"=>$id]);
+        $requeteRealisateur=$pdo->prepare(
+            "   
+            SELECT f.id_realisateur,CONCAT(p.nom,'-',p.prenom) As nom
+            FROM   film f
+            INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur
+            INNER JOIN personne p ON p.id_personne=r.id_personne
+            WHERE f.id_film=:id_film"
+        );
+        $requeteRealisateur->execute(["id_film"=>$id]);
         
         require "view/infofilm.php";
     }
@@ -104,16 +113,22 @@ $requete->execute(["id_role"=>$id]);
 require "view/infoRole.php";
     }
 
-    // public function genre()
-    // {
-    //     $selected_genre = $_GET['genre'];
-    //     $pdo = Connect::seConnecter();
-    //     $requete = $pdo->query("
-    //     SELECT titre,annee_sortie_fr
-    //     FROM   film f
-    //     INNER JOIN classer c ON c.id_film = f.id_film
-    //     INNER JOIN genre g ON g.id_genre = c.id_genre
-    //     WHERE g.libelle=:$selected_genre");
-    //     require "view/genre.php"; 
-    // }
+    public function genre($id)
+     {
+         
+         $pdo = Connect::seConnecter();
+         $requete = $pdo->prepare("
+         SELECT f.titre,f.annee_sortie_fr,f.id_film
+         FROM   film f
+         INNER JOIN classer c ON c.id_film = f.id_film
+        WHERE c.id_genre=:id_genre");
+         $requete->execute(["id_genre"=>$id]);
+         $requetelibelle=$pdo->prepare("
+         SELECT DISTINCT g.libelle
+         FROM   genre g
+         INNER JOIN classer c ON c.id_genre = g.id_genre
+        WHERE c.id_genre=:id_genre");
+        $requetelibelle->execute(["id_genre"=>$id]);
+         require "view/genre.php"; 
+     }
 }
