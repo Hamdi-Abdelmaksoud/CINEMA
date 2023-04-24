@@ -8,7 +8,7 @@ $type=$requetelibelle->fetch();?>
 <?php 
 foreach($genre as $film)
 {?>
-<a href="index.php?action=infofilm&id=.<?=$film["id_film"] ?>"><?=$film["titre"]."</a> sorti le ".$film["annee_sortie_fr"]."<br>" ?>
+<a href="index.php?action=infofilm&id=<?=$film["id_film"] ?>"><?=$film["titre"]."</a> sorti le ".$film["annee_sortie_fr"]."<br>" ?>
 <?php } ?>
 
 

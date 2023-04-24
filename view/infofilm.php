@@ -8,7 +8,9 @@ $realisateur=$requeteRealisateur->fetch();
 
 ?>
 <h1><?= $film["titre"] ?></h1>
+
 <h3><a href="index.php?action=genre&id=<?= $genre["id_genre"] ?>"><?=$genre["libelle"]?> </a></h3>
+
 <p>Année de sortie : <?= $film["annee_sortie_fr"] ?></p>
 <p>réaliser par : <?=$realisateur["nom"]?></p>
 
