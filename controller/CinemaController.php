@@ -40,20 +40,41 @@ class CinemaController
         $pdo = Connect::seConnecter();
         $requete = $pdo->prepare("
         SELECT f.titre,f.annee_sortie_fr 
-            FROM film f
-            WHERE f.id_film = :id_film");
-
+        FROM film f
+        WHERE f.id_film = :id_film");
+        
         $requete->execute(["id_film" => $id]);
-
+        
         $requeteCasting = $pdo->prepare("
-        SELECT p.nom,p.prenom FROM film
-INNER JOIN jouer  j ON j.id_film=film.id_film
-INNER JOIN acteur a ON a.id_acteur=j.id_acteur
-INNER JOIN personne p ON p.id_personne=a.id_personne
-WHERE film.id_film= :id_film");
+        SELECT p.nom,p.prenom,a.id_acteur FROM film
+        INNER JOIN jouer  j ON j.id_film=film.id_film
+        INNER JOIN acteur a ON a.id_acteur=j.id_acteur
+        INNER JOIN personne p ON p.id_personne=a.id_personne
+        WHERE film.id_film= :id_film");
         $requeteCasting->execute(["id_film" => $id]);
-
+        
         require "view/infofilm.php";
+    }
+    public function infoActeur($id)
+    {
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->prepare("
+        SELECT concat(p.nom,p.prenom)as nom,p.date_naissance,a.id_acteur 
+        FROM  acteur a
+        INNER JOIN personne p ON p.id_personne=a.id_personne
+        WHERE a.id_acteur = :id_acteur");
+        $requete->execute(["id_acteur" => $id]);
+        $requeteFilmo=$pdo->prepare("
+        SELECT f.titre, r.nom_personnage , f.annee_sortie_fr,f.id_film
+        FROM film f
+        INNER JOIN jouer j ON f.id_film = j.id_film
+        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+        INNER JOIN role r ON j.id_role = r.id_role
+        WHERE a.id_acteur = :id_acteur 
+        ");
+        $requeteFilmo->execute(["id_acteur"=>$id]);
+        require "view/infoActeur.php";
+        
     }
 
     // public function genre()

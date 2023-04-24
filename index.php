@@ -28,5 +28,10 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
         case 'infofilm':
             $ctrlCinema->infofilm($_GET["id"]);
             break;
+            case 'infoActeur':
+            $ctrlCinema->infoActeur($_GET["id"]);
+            break;
+            case 'infoRole':
+                $ctrlCinema->
     }
 }
