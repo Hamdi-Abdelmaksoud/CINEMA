@@ -131,4 +131,11 @@ require "view/infoRole.php";
         $requetelibelle->execute(["id_genre"=>$id]);
          require "view/genre.php"; 
      }
+     public function listGenre()
+     {
+ $pdo = Connect::seConnecter();
+         $requete = $pdo->query ("
+         SELECT libelle,id_genre FROM genre 
+ ");
+ require "view/listGenre.php";  }
 }

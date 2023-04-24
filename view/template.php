@@ -20,6 +20,9 @@
             <li>
                 <a href="index.php?action=listRealisateurs">Liste des réalisateurs</a>
             </li>
+            <li>
+                <a href="index.php?action=listGenre">Liste de genre</a>
+            </li>
             <!-- <li>
                 <div>filter
                     <select name="genre" id="genre">
