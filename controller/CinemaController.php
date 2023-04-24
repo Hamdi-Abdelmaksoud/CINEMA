@@ -52,6 +52,13 @@ class CinemaController
         INNER JOIN personne p ON p.id_personne=a.id_personne
         WHERE film.id_film= :id_film");
         $requeteCasting->execute(["id_film" => $id]);
+        $requeteClasser=$pdo->prepare("
+        SELECT g.libelle FROM genre g
+INNER JOIN classer c ON c.id_genre=g.id_genre
+WHERE c.id_film=:id_film
+        
+        ");
+        $requeteClasser->execute(["id_film"=>$id]);
         
         require "view/infofilm.php";
     }
