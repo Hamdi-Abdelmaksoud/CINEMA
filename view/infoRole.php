@@ -14,12 +14,15 @@ foreach($role as $cast)
     echo "
     <table>
     <tr>
-    <td>".$cast["nom"]."(".$cast['titre'].")</td>
+    <td>".'<a href="index.php?action=infoActeur&id='.$cast["id_acteur"].'">'.$cast["nom"]."</a> ("
+    .'<a href="index.php?action=infofilm&id='.$cast["id_film"].'">'.$cast['titre']."</a>)</td>
     <tr>
     
     </table>";
+    
 }
 ?>
+
 <?php
 $titre = "Information role";
 $titre_secondaire = "Liste des acteurs";

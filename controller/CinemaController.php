@@ -59,7 +59,7 @@ class CinemaController
     {
         $pdo = Connect::seConnecter();
         $requete = $pdo->prepare("
-        SELECT concat(p.nom,"-",p.prenom)as nom,p.date_naissance,a.id_acteur 
+        SELECT concat(p.nom,'-',p.prenom)as nom,p.date_naissance,a.id_acteur 
         FROM  acteur a
         INNER JOIN personne p ON p.id_personne=a.id_personne
         WHERE a.id_acteur = :id_acteur");
