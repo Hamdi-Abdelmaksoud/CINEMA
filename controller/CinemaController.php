@@ -59,13 +59,13 @@ class CinemaController
     {
         $pdo = Connect::seConnecter();
         $requete = $pdo->prepare("
-        SELECT concat(p.nom,p.prenom)as nom,p.date_naissance,a.id_acteur 
+        SELECT concat(p.nom,"-",p.prenom)as nom,p.date_naissance,a.id_acteur 
         FROM  acteur a
         INNER JOIN personne p ON p.id_personne=a.id_personne
         WHERE a.id_acteur = :id_acteur");
         $requete->execute(["id_acteur" => $id]);
         $requeteFilmo=$pdo->prepare("
-        SELECT f.titre, r.nom_personnage , f.annee_sortie_fr,f.id_film
+        SELECT f.titre, r.nom_personnage , f.annee_sortie_fr,f.id_film,r.id_role
         FROM film f
         INNER JOIN jouer j ON f.id_film = j.id_film
         INNER JOIN acteur a ON j.id_acteur = a.id_acteur
@@ -75,6 +75,26 @@ class CinemaController
         $requeteFilmo->execute(["id_acteur"=>$id]);
         require "view/infoActeur.php";
         
+    }
+    public function infoRole($id)
+    {
+        $pdo=connect::seConnecter();
+        $requeterole=$pdo->prepare("
+        SELECT r.nom_personnage FROM role r
+        WHERE r.id_role=:id_role
+        ");
+        $requeterole->execute(["id_role"=>$id]);
+        $requete=$pdo->prepare("
+        SELECT CONCAT(p.nom,'-',p.prenom)as nom,a.id_acteur,f.titre,j.id_film
+            FROM jouer j
+            INNER JOIN acteur a ON a.id_acteur= j.id_acteur
+            INNER JOIN personne p  ON p.id_personne = a.id_personne
+            INNER JOIN role r ON j.id_role = r.id_role
+            INNER JOIN film f ON f.id_film=j.id_film
+            WHERE j.id_role =:id_role  
+        ");
+$requete->execute(["id_role"=>$id]);
+require "view/infoRole.php";
     }
 
     // public function genre()

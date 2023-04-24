@@ -12,7 +12,7 @@ $films=$requeteFilmo->fetchAll()
 <p> <?= $acteur["date_naissance"]?></p>
 <p><?php foreach($films as $film){
     echo '<a href="index.php?action=infofilm&id=' . $film["id_film"].'">'.$film['titre']."</a> <br>";
-    echo '<a href="index.php?action=infoRole".>'.$film["nom_personnage"]."</a>"; 
+    echo '<a href="index.php?action=infoRole&id='.$film["id_role"].'".>'.$film["nom_personnage"]."</a>"; 
     
     }?></p>
 
