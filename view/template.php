@@ -26,6 +26,7 @@
             <li>
                 <a href="index.php?action=ajouterRole">Ajouter role</a>
             </li>
+            <li><a href="index.php?action=ajouterGenre">Ajouter Genre</a></li>
             <!-- <li>
                 <div>filter
                     <select name="genre" id="genre">
@@ -35,14 +36,14 @@
                 </div> 
             </li>-->
         </ul>
-        
+
     </nav>
     <h1><?= $titre_secondaire ?></h1>
 
     <div>
         <?= $contenu ?>
     </div>
- 
+
 </body>
 
 </html>

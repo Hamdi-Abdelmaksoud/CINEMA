@@ -4,23 +4,21 @@ namespace Controller;
 
 use Model\Connect;
 
-class RoleController
+class GenreController
 {
-    public function AjouterRole()
+    public function AjouterGenre()
     {
-        if(isset($_POST["ajoutRole"]))
-        {
-            $role=filter_input(INPUT_POST,"nom_role",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if($role)
-            {
-                $pdo=Connect::seConnecter();
-                $requete=$pdo->prepare(
-                    "INSERT INTO role(nom_personnage) VALUES ($role)"
+        if (isset($_POST["ajoutGenre"])) {
+            $genre = filter_input(INPUT_POST, "nom_genre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if ($genre) {
+                $pdo = Connect::seConnecter();
+                $requete = $pdo->prepare(
+                    "INSERT INTO genre(libelle) VALUES (:libelle)"
                 );
-                $requete->execute();
-
+                $requete->execute(['libelle' => $genre]);
             }
         }
-        require()
+
+        require "view/ajouterGenre.php";
     }
 }

@@ -15,6 +15,6 @@ ob_start();
 $titre = "Ajouter un rôle";
 $titre_secondaire = "Ajouter un rôle";
 $contenu = ob_get_clean();
-require "view/template.php"; 
+require "view/template.php";
 
 ?>
