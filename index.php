@@ -50,9 +50,14 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
             $ctrlrole->AjouterRole();
             break;
         case 'ajouterGenre':
-        $ctrlgenre->AjouterGenre();
-        break;
+            $ctrlgenre->AjouterGenre();
+            break;
         case 'ajouterPersonne':
             $ctrlpersonne->ajouterPersonne();
+            break;
+        case 'ajouterFilm':
+            $ctrlCinema->ajouterFilm();
+            break;
+
     }
 }
