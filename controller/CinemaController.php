@@ -151,4 +151,13 @@ WHERE c.id_film=:id_film
         ");
         require "view/listGenre.php";
     }
+    public function affichePersonne()
+    {
+        $pdo=Connect::seConnecter();
+        $requete=$pdo->prepare
+        (
+            "SELECT CONCAT(id_personne, ' - ', nom, '-', prenom) AS personne FROM personne "
+        );
+        require "view/ajouterFilm.php";
+    }
 }
