@@ -30,10 +30,20 @@ class CinemaController
     {
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("
-        SELECT * 
+        SELECT CONCAT(p.nom,'-',p.prenom) AS nom,r.id_realisateur,p.date_naissance
         FROM  personne p
         INNER JOIN realisateur r ON r.id_personne = p.id_personne");
         require "view/listRealisateurs.php";
+    }
+    public function infoRealisateur()
+    {
+        $pdo= Connect::seConnecter();
+        $requete=$pdo->prepare("
+        SELECT *
+        FROM  personne p
+        INNER JOIN realisateur r ON r.id_personne = p.id_personne
+        WHERE r.id_realisateur=:id_realisateur");
+        $requete->execute(["id_realisateur="]);
     }
     public function infofilm($id)
     {
@@ -131,6 +141,7 @@ require "view/infoRole.php";
         $requetelibelle->execute(["id_genre"=>$id]);
          require "view/genre.php"; 
      }
+
      public function listGenre()
      {
  $pdo = Connect::seConnecter();

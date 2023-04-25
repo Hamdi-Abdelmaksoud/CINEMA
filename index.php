@@ -1,6 +1,7 @@
 <?php
 
 use Controller\CinemaController;
+use Controller\RoleController;
 
 spl_autoload_register(function ($class_name)
 /*une fonction d'autoloading spl_autoload_register qui est utilisée pour inclure automatiquement les classes dans le fichier PHP.
@@ -9,6 +10,7 @@ spl_autoload_register(function ($class_name)
     include $class_name . '.php';
 });
 $ctrlCinema = new CinemaController(); //La classe CinemaController contient les fonctions nécessaires pour traiter les requêtes
+$ctrlrole=new RoleController();
 if (isset($_GET["action"])) //appel suivant la requete demandée
 {
     switch ($_GET["action"]) {
@@ -21,8 +23,9 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
         case "listRealisateurs":
             $ctrlCinema->listRealisateurs();
             break;
-            // case 'genre':
-            //     $ctrlCinema->genre();
+            case 'infoRealisateur':
+                 $ctrlCinema->infoRealisateur();
+                 break;
         case 'infofilm':
             $ctrlCinema->infofilm($_GET["id"]);
             break;
@@ -35,5 +38,13 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
         case 'genre':
             $ctrlCinema->genre($_GET["id"]);
             break;
+        case 'listGenre':
+            $ctrlCinema->listGenre();
+            break;
+        case 'ajouterRole':
+            $ctrlrole->AjouterRole();
+            break;
+                
+
     }
 }
