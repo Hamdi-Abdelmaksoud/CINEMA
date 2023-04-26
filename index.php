@@ -64,6 +64,10 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
         case 'ajouterRealisateur':
             $ctrlpersonne->ajouterRealisateur();
             break; 
+        case 'affecterRole':
+            $ctrlrole->affecterRole();
+            break;
+
 
     }
 }

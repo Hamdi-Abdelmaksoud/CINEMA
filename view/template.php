@@ -21,16 +21,17 @@
                 <a href="index.php?action=listRealisateurs">Liste des réalisateurs</a>
             </li>
             <li>
-                <a href="index.php?action=listGenre">Liste de genre</a>
+                <a href="index.php?action=listGenre">Liste des genre</a>
             </li>
             <li>
-                <a href="index.php?action=ajouterRole">Ajouter role</a>
+                <a href="index.php?action=ajouterRole">Ajouter un role</a>
             </li>
-            <li><a href="index.php?action=ajouterGenre">Ajouter Genre</a></li>
+            <li><a href="index.php?action=ajouterGenre">Ajouter un genre</a></li>
             <li><a href="index.php?action=ajouterPersonne">Ajouter acteur/réalisateur</a></li>
-            <li><a href="index.php?action=ajouterFilm">Ajouter film</a></li>
-            <li><a href="index.php?action=ajouterActeur">Ajouter acteur</a></li>
-            <li><a href="index.php?action=ajouterRealisateur">Ajouter Realisateur</a></li>
+            <li><a href="index.php?action=ajouterFilm">Ajouter un film</a></li>
+            <li><a href="index.php?action=ajouterActeur">Ajouter un acteur</a></li>
+            <li><a href="index.php?action=ajouterRealisateur">Ajouter un realisateur</a></li>
+            <li><a href="index.php?action=affecterRole">Affecter un role à un acteur</a></li>
             <!-- <li>
                 <div>filter
                     <select name="genre" id="genre">

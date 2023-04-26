@@ -108,7 +108,7 @@ WHERE c.id_film=:id_film
             if ($titre && $annee && $duree && $resume && $note && $id) {
                 $requeteFilm = $pdo->prepare(
                     "INSERT INTO film(titre,annee_sortie_fr,duree,resume,note,id_realisateur) VALUES(:titre,:annee_sortie_fr,:duree,:resume,:note,:id_realisateur)"
-                );
+                );//ajouter un film
                 $requeteFilm->execute([
                     "titre" => $titre,
                     "annee_sortie_fr" => $annee,
@@ -117,9 +117,9 @@ WHERE c.id_film=:id_film
                     "note" => $note,
                     "id_realisateur"=>$id
                 ]);
-                $film=$pdo->lastInsertId();
+                $film=$pdo->lastInsertId();//pour récupérer le id du film ajouter
                 $requeteclasser=$pdo->prepare(
-                    "INSERT INTO classer(id_film,id_genre) VALUES(:film,:genre) "
+                    "INSERT INTO classer(id_film,id_genre) VALUES(:film,:genre) "//ajouter le genre du film 
                 );
                 $requeteclasser->execute([
                     "film"=>$film,
@@ -130,4 +130,5 @@ WHERE c.id_film=:id_film
         } // fin if
         require "view/ajouterFilm.php";
     }
+    
 }
