@@ -58,6 +58,9 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
         case 'ajouterFilm':
             $ctrlCinema->ajouterFilm();
             break;
+        case 'ajouterActeur':
+            $ctrlpersonne->ajouterActeur();    
+            break;
 
     }
 }

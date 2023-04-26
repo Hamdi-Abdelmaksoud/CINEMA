@@ -160,7 +160,8 @@ WHERE c.id_film=:id_film
         );
         $requete->execute();
         
-        if (isset($_POST["ajoutFilm"])) {
+        if (isset($_POST["ajoutFilm"]))
+        {
             
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $annee = filter_input(INPUT_POST, "annee_sortie_fr", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -168,9 +169,6 @@ WHERE c.id_film=:id_film
             $resume = filter_input(INPUT_POST, 'resume', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_INT);
             $id = filter_input(INPUT_POST, "realisateur", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-
-            
             if ($titre && $annee && $duree && $resume && $note && $id) {
                 $requeteFilm = $pdo->prepare(
                     "INSERT INTO film(titre,annee_sortie_fr,duree,resume,note,id_realisateur) VALUES(:titre,:annee_sortie_fr,:duree,:resume,:note,:id_realisateur)"
