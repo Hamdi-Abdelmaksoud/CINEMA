@@ -30,6 +30,7 @@
             <li><a href="index.php?action=ajouterPersonne">Ajouter acteur/réalisateur</a></li>
             <li><a href="index.php?action=ajouterFilm">Ajouter film</a></li>
             <li><a href="index.php?action=ajouterActeur">Ajouter acteur</a></li>
+            <li><a href="index.php?action=ajouterRealisateur">Ajouter Realisateur</a></li>
             <!-- <li>
                 <div>filter
                     <select name="genre" id="genre">

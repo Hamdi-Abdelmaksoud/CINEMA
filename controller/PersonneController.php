@@ -50,4 +50,23 @@ class PersonneController
       }
         require "view/ajouterActeur.php";
     }
-}
+    
+    
+    public function ajouterRealisateur() 
+        {
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->prepare(" SELECT CONCAT(p.nom,'-',p.prenom) AS nom ,id_personne FROM personne p");
+        $requete->execute();
+            if(isset ($_POST["ajouterRealisateur"]))//ajouter realisateur from name input type submit
+           {
+             $id=filter_input(INPUT_POST, "realisateur", FILTER_SANITIZE_FULL_SPECIAL_CHARS);//realisateur c'est le nom de select de la page ajouter realisateur
+             $pdo = Connect::seConnecter();
+             $requeteRealisateur = $pdo->prepare("
+             INSERT INTO realisateur(id_personne) VALUES(:id)
+             "); 
+             $requeteRealisateur->execute(['id' => $id]);
+          }
+            require "view/ajouterRealisateur.php";
+        }
+    }
+
