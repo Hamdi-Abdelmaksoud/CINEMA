@@ -23,10 +23,10 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
             $ctrlCinema->listFilms();
             break;
         case "listActeurs":
-            $ctrlCinema->listActeurs();
+            $ctrlpersonne->listActeurs();
             break;
         case "listRealisateurs":
-            $ctrlCinema->listRealisateurs();
+            $ctrlpersonne->listRealisateurs();
             break;
         case 'infoRealisateur':
             $ctrlpersonne->infoRealisateur($_GET["id"]);
@@ -41,10 +41,10 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
             $ctrlCinema->infoRole($_GET["id"]);
             break;
         case 'genre':
-            $ctrlCinema->genre($_GET["id"]);
+            $ctrlgenre->genre($_GET["id"]);
             break;
         case 'listGenre':
-            $ctrlCinema->listGenre();
+            $ctrlgenre->listGenre();
             break;
         case 'ajouterRole':
             $ctrlrole->AjouterRole();

@@ -17,34 +17,7 @@ class CinemaController
         require "view/listFilms.php";
     }
 
-    public function listActeurs()
-    {
-        $pdo = Connect::seConnecter();
-        $requete = $pdo->query("
-        SELECT * 
-        FROM  personne p
-        INNER JOIN acteur a ON a.id_personne = p.id_personne");
-        require "view/listActeurs.php";
-    }
-    public function listRealisateurs()
-    {
-        $pdo = Connect::seConnecter();
-        $requete = $pdo->query("
-        SELECT CONCAT(p.nom,'-',p.prenom) AS nom,r.id_realisateur,p.date_naissance
-        FROM  personne p
-        INNER JOIN realisateur r ON r.id_personne = p.id_personne");
-        require "view/listRealisateurs.php";
-    }
-    public function infoRealisateur()
-    {
-        $pdo = Connect::seConnecter();
-        $requete = $pdo->prepare("
-        SELECT *
-        FROM  personne p
-        INNER JOIN realisateur r ON r.id_personne = p.id_personne
-        WHERE r.id_realisateur=:id_realisateur");
-        $requete->execute(["id_realisateur="]);
-    }
+ 
     public function infofilm($id)
     {
         $pdo = Connect::seConnecter();
@@ -81,26 +54,7 @@ WHERE c.id_film=:id_film
 
         require "view/infofilm.php";
     }
-    public function infoActeur($id)
-    {
-        $pdo = Connect::seConnecter();
-        $requete = $pdo->prepare("
-        SELECT concat(p.nom,'-',p.prenom)as nom,p.date_naissance,a.id_acteur 
-        FROM  acteur a
-        INNER JOIN personne p ON p.id_personne=a.id_personne
-        WHERE a.id_acteur = :id_acteur");
-        $requete->execute(["id_acteur" => $id]);
-        $requeteFilmo = $pdo->prepare("
-        SELECT f.titre, r.nom_personnage , f.annee_sortie_fr,f.id_film,r.id_role
-        FROM film f
-        INNER JOIN jouer j ON f.id_film = j.id_film
-        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
-        INNER JOIN role r ON j.id_role = r.id_role
-        WHERE a.id_acteur = :id_acteur 
-        ");
-        $requeteFilmo->execute(["id_acteur" => $id]);
-        require "view/infoActeur.php";
-    }
+
     public function infoRole($id)
     {
         $pdo = connect::seConnecter();
@@ -122,34 +76,8 @@ WHERE c.id_film=:id_film
         require "view/infoRole.php";
     }
 
-    public function genre($id)
-    {
 
-        $pdo = Connect::seConnecter();
-        $requete = $pdo->prepare("
-        SELECT f.titre,f.annee_sortie_fr,f.id_film
-        FROM   film f
-        INNER JOIN classer c ON c.id_film = f.id_film
-        WHERE c.id_genre=:id_genre");
-        $requete->execute(["id_genre" => $id]);
-        $requetelibelle = $pdo->prepare(
-            "
-        SELECT DISTINCT g.libelle
-        FROM   genre g
-        INNER JOIN classer c ON c.id_genre = g.id_genre
-        WHERE c.id_genre=:id_genre"
-        );
-        $requetelibelle->execute(["id_genre" => $id]);
-        require "view/genre.php";
-    }
 
-    public function listGenre()
-    {
-        $pdo = Connect::seConnecter();
-        $requete = $pdo->query("SELECT libelle,id_genre FROM genre 
-        ");
-        require "view/listGenre.php";
-    }
     public function ajouterFilm()
     {
         $pdo = Connect::seConnecter();
