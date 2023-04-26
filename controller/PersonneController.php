@@ -30,7 +30,7 @@ class PersonneController
     {
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("
-        SELECT * 
+        SELECT *
         FROM  personne p
         INNER JOIN acteur a ON a.id_personne = p.id_personne");
         require "view/listActeurs.php";
