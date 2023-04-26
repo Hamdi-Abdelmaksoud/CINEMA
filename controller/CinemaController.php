@@ -87,6 +87,12 @@ WHERE c.id_film=:id_film
             INNER JOIN realisateur r ON r.id_personne=p.id_personne"
         );
         $requete->execute();
+        $requeteGenre=$pdo->prepare(
+            "
+            SELECT * FROM genre 
+            "
+        );
+        $requeteGenre->execute();
         
         if (isset($_POST["ajoutFilm"]))
         {
@@ -97,6 +103,8 @@ WHERE c.id_film=:id_film
             $resume = filter_input(INPUT_POST, 'resume', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_INT);
             $id = filter_input(INPUT_POST, "realisateur", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $genre=filter_input(INPUT_POST, "genre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+          
             if ($titre && $annee && $duree && $resume && $note && $id) {
                 $requeteFilm = $pdo->prepare(
                     "INSERT INTO film(titre,annee_sortie_fr,duree,resume,note,id_realisateur) VALUES(:titre,:annee_sortie_fr,:duree,:resume,:note,:id_realisateur)"
@@ -108,6 +116,15 @@ WHERE c.id_film=:id_film
                     "resume" => $resume,
                     "note" => $note,
                     "id_realisateur"=>$id
+                ]);
+                $film=$pdo->lastInsertId();
+                $requeteclasser=$pdo->prepare(
+                    "INSERT INTO classer(id_film,id_genre) VALUES(:film,:genre) "
+                );
+                $requeteclasser->execute([
+                    "film"=>$film,
+                    "genre"=>$genre
+
                 ]);
             }
         } // fin if

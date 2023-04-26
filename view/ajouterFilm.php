@@ -1,7 +1,7 @@
 <?Php
 ob_start();
 $realisateurs = $requete->fetchAll();
-
+$genres=$requeteGenre->fetchAll();
 ?>
 
 <form enctype='multipart/from-data' action="index.php?action=ajouterFilm" method="post">
@@ -18,6 +18,11 @@ $realisateurs = $requete->fetchAll();
         
         <?php } ?>
     </select>
+   <select name=genre>
+    <?php foreach($genres as $genre){?>
+    <option value="<?=$genre["id_genre"]?>"><?=$genre["libelle"]?></option>
+    <?php } ?>
+   </select>
     <input type="submit" name="ajoutFilm" value="Ajouter le film">
 </form>
 
