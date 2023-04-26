@@ -6,6 +6,44 @@ use Model\Connect;
 
 class PersonneController
 {
+    public function infoActeur($id)
+    {
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->prepare("
+        SELECT concat(p.nom,'-',p.prenom)as nom,p.date_naissance,a.id_acteur 
+        FROM  acteur a
+        INNER JOIN personne p ON p.id_personne=a.id_personne
+        WHERE a.id_acteur = :id_acteur");
+        $requete->execute(["id_acteur" => $id]);
+        $requeteFilmo = $pdo->prepare("
+        SELECT f.titre, r.nom_personnage , f.annee_sortie_fr,f.id_film,r.id_role
+        FROM film f
+        INNER JOIN jouer j ON f.id_film = j.id_film
+        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+        INNER JOIN role r ON j.id_role = r.id_role
+        WHERE a.id_acteur = :id_acteur 
+        ");
+        $requeteFilmo->execute(["id_acteur" => $id]);
+        require "view/infoActeur.php";
+    }
+    public function infoRealisateur($id)
+    {
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->prepare("
+        SELECT concat(p.nom,'-',p.prenom)as nom,p.date_naissance,r.id_realisateur
+        FROM  realisateur r
+        INNER JOIN personne p ON p.id_personne=r.id_personne
+        WHERE r.id_realisateur = :id_realisateur");
+        $requete->execute(["id_realisateur" => $id]);
+        $requeteFilmo = $pdo->prepare("
+        SELECT f.titre,f.annee_sortie_fr,f.id_film
+        FROM film f
+        INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur
+        WHERE f.id_realisateur = :id_realisateur 
+        ");
+        $requeteFilmo->execute(["id_realisateur" => $id]);
+        require "view/infoRealisateur.php";
+    }
     public function ajouterPersonne()
     {
         if (isset($_POST["ajoutpersonne"]))

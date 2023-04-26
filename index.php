@@ -29,13 +29,13 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
             $ctrlCinema->listRealisateurs();
             break;
         case 'infoRealisateur':
-            $ctrlCinema->infoRealisateur();
+            $ctrlpersonne->infoRealisateur($_GET["id"]);
             break;
         case 'infofilm':
             $ctrlCinema->infofilm($_GET["id"]);
             break;
         case 'infoActeur':
-            $ctrlCinema->infoActeur($_GET["id"]);
+            $ctrlpersonne->infoActeur($_GET["id"]);
             break;
         case 'infoRole':
             $ctrlCinema->infoRole($_GET["id"]);

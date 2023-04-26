@@ -18,7 +18,7 @@ $films = $requeteFilmo->fetchAll();//on récupére les films d'un acteur
     } ?></p>
 
 <?php
-$titre = "Liste des acteurs";
-$titre_secondaire = "Liste des acteurs";
+$titre = "infos acteur";
+$titre_secondaire = "info acteur";
 $contenu = ob_get_clean();
 require "view/template.php"; ?>
