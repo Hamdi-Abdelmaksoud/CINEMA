@@ -47,7 +47,7 @@ class PersonneController
         $pdo = Connect::seConnecter();
         $requete = $pdo->query
         (
-            "SELECT CONCAT(p.nom,'-',p.prenom) AS nom,r.id_realisateur,p.date_naissance
+            "SELECT p.nom,p.prenom,r.id_realisateur,p.date_naissance
                 FROM  personne p
                 INNER JOIN realisateur r ON r.id_personne = p.id_personne
             "
