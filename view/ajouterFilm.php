@@ -4,9 +4,9 @@ $realisateurs = $requete->fetchAll();
 $genres = $requeteGenre->fetchAll();
 ?>
 
-<form enctype='multipart/from-data' action="index.php?action=ajouterFilm" method="post">
+<form class="btn btn-secondary"  enctype='multipart/from-data' action="index.php?action=ajouterFilm" method="post">
 
-    <input type="text" name="titre" id="titre" required placeholder="   Titre de film" value="Film de test">
+    <input  type="text" name="titre" id="titre" required placeholder="   Titre de film" value="Film de test">
     <input type="date" name="annee_sortie_fr" id="anne" required placeholder="    anne de sortie" value="2020-01-01">
     <input type="number" name="duree" id="duree" min='10' required placeholder="   durée" value="100">
     <input type="text" name="resume" id="resume" required minlength="10" placeholder="   resmuer" value="aaaaaaaaaa">
@@ -23,7 +23,9 @@ $genres = $requeteGenre->fetchAll();
             <option value="<?= $genre["id_genre"] ?>"><?= $genre["libelle"] ?></option>
         <?php } ?>
     </select>
-    <input type="submit" name="ajoutFilm" value="Ajouter le film">
+    <button class="btn btn-secondary" type="submit" name="ajoutFilm">
+    Ajouter le film
+</button>
 </form>
 
 <?php
