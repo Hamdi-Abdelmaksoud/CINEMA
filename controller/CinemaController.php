@@ -12,8 +12,10 @@ class CinemaController
     public function listFilms()
     {
         $pdo = Connect::seConnecter();
-        $requete = $pdo->query("
-        SELECT id_film, titre, annee_sortie_fr FROM film");
+        $requete = $pdo->query(
+            "SELECT *,r.id_realisateur,CONCAT(p.nom,'-',p.prenom) AS nom FROM film f
+        INNER JOIN realisateur r ON f.id_realisateur=r.id_realisateur
+        INNER JOIN personne p ON p.id_personne=r.id_personne");
         require "view/listFilms.php";
     }
 
