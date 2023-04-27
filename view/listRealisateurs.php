@@ -24,6 +24,9 @@ ob_start(); ?>
         <?php } ?>
 
     </tbody>
+  
+    <td colspan="3"><a  style='text-decoration:none;' href="index.php?action=ajouterRealisateur"><i class="fa-solid fa-circle-plus" style="color: #149924;"></i>  <span style="color:white">ajouter un realisateur</span></a>
+    </td>
 </table>
 
 <?php

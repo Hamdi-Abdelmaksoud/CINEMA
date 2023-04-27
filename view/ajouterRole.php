@@ -10,6 +10,7 @@ ob_start();
     <input type="text" name="nom_role" id="nom_role" required>
     <input type="submit" name="ajoutRole" value="Ajouter le role">
 </form>
+<a href="index.php?action=affecterRole">Affecter un role à un acteur</a>
 <?php
 
 $titre = "Ajouter un rôle";

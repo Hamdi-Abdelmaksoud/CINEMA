@@ -32,11 +32,11 @@
             <a class="nav-link dropdown-toggle text-light bg-dark " data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Ajouter</a>
             <ul class="dropdown-menu dropdown-menu-dark">
                 <li>
-                    <a class="dropdown-item text-light " href="index.php?action=ajouterRole">Ajouter un role</a>
+                    <a class="dropdown-item text-light " href="index.php?action=ajouterRole">role</a>
                 </li>
-                <li><a class="dropdown-item text-light bg-dark" href="index.php?action=ajouterGenre">Ajouter un genre</a></li>
-                <li><a class="dropdown-item text-light " href="index.php?action=ajouterFilm">Ajouter un film</a></li>
-                <li><a class="dropdown-item text-light bg-dark" href="index.php?action=affecterRole">Affecter un role à un acteur</a></li>
+                <li><a class="dropdown-item text-light bg-dark" href="index.php?action=ajouterGenre">genre</a></li>
+                <li><a class="dropdown-item text-light " href="index.php?action=ajouterFilm">film</a></li>
+                <li><a class="dropdown-item text-light bg-dark" href="index.php?action=affecterRole">casting</a></li>
                 
                 
                 <li><a  class="dropdown-item text-light " h ref="index.php?action=ajouterPersonne">acteur/réalisateur</a></li>

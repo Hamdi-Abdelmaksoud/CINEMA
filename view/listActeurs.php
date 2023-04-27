@@ -22,7 +22,8 @@ ob_start(); ?>
                 
             </tr>
         <?php } ?>
-
+        <td colspan="3"><a class="dropdown-item text-light bg-dark " href="index.php?action=ajouterActeur"><i class="fa-solid fa-circle-plus" style="color: #149924;"></i>  <span style="color:white">ajouter un acteur</span></a>
+    </td>
     </tbody>
 </table>
 

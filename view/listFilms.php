@@ -4,7 +4,7 @@ ob_start(); //Cette fonction démarre un tampon de sortie de sortie de bufferisa
 ?>
 
 <p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?>films</p><!--le nombre de films dans la requête à l'aide de la fonction rowCount() -->
-<table class="uk-table uk-table-striped">
+<table class="table table-dark">
     <thead>
         <tr>
             <th>TITRE</th>
