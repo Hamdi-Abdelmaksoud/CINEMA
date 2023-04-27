@@ -65,7 +65,7 @@
 </div>
 
 <div style="width: 60%;margin-top:5% ;">
-    <h1 style="text-align: center;"><?= $titre_secondaire ?></h1>
+    <h1><?= $titre_secondaire ?></h1>
     <?= $contenu ?>
     </div>
     </div>
