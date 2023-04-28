@@ -4,8 +4,20 @@ ob_start(); //Cette fonction démarre un tampon de sortie de sortie de bufferisa
 $genres=$requete->fetchAll();
 
 ?>
-<?php foreach($genres as $genre){?>
-<p><a href="index.php?action=genre&id=<?= $genre["id_genre"] ?>"><?=$genre["libelle"]?> </a></p><?php }?>
+<table class="uk-label uk-label-warning" style="font-weight: bold;">
+<thead>
+        <tr>
+            <th>genre</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($genres as $genre){?>
+            <tr>
+            <td><a href="index.php?action=genre&id=<?= $genre["id_genre"] ?>"><?=$genre["libelle"]?> </td></p><?php }?>
+            </tr>
+            <tbody>
+                </table>
  <?php
 $titre = "Liste des genres";
 $titre_secondaire = "Gernes";

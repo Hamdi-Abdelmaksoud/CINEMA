@@ -106,8 +106,26 @@ WHERE c.id_film=:id_film
             $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_INT);
             $id = filter_input(INPUT_POST, "realisateur", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $genre=filter_input(INPUT_POST, "genre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $img=filter_input(INPUT_POST, "img",  FILTER_SANITIZE_URL);
           
-            if ($titre && $annee && $duree && $resume && $note && $id) {
+            if ($titre && $annee && $duree && $resume && $note && $id) 
+            {
+                //avant :l'ajout de film on vérifie si il existe déja dans la base
+                    $requeteExiste=$pdo->prepare(
+                        "SELECT COUNT(*) FROM film
+                        WHERE titre=:titre AND annee_sortie_fr=:annee
+                    ");
+                    $requeteExiste->execute(["titre" => $titre,
+                "annee"=>$annee]);
+                $existe=$requeteExiste->fetchColumn();
+               if($existe>0)//on envoi une information à la page ajouter film que le film existe déja
+                {
+                 $_SESSION['message']="Le film existe déja";
+                  
+                }
+                else
+                {
+                
                 $requeteFilm = $pdo->prepare(
                     "INSERT INTO film(titre,annee_sortie_fr,duree,resume,note,id_realisateur) VALUES(:titre,:annee_sortie_fr,:duree,:resume,:note,:id_realisateur)"
                 );//ajouter un film
@@ -128,6 +146,7 @@ WHERE c.id_film=:id_film
                     "genre"=>$genre
 
                 ]);
+            }
             }
         } // fin if
         require "view/ajouterFilm.php";

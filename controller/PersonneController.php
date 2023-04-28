@@ -109,7 +109,9 @@ class PersonneController
     public function ajouterActeur()
     {
         $pdo = Connect::seConnecter();
-        $requete = $pdo->prepare(" SELECT CONCAT(p.nom,'-',p.prenom) AS nom ,id_personne FROM personne p");
+        $requete = $pdo->prepare(" SELECT CONCAT(p.nom,'-',p.prenom) AS nom ,id_personne 
+        FROM personne p
+        WHERE NOT EXISTS(SELECT a.id_personne FROM acteur a WHERE p.id_personne = a.id_personne)");
         $requete->execute();
         if (isset($_POST["ajouterActeur"])) //ajouter acteur from name input type submit
         {
@@ -126,7 +128,9 @@ class PersonneController
     public function ajouterRealisateur()
     {
         $pdo = Connect::seConnecter();
-        $requete = $pdo->prepare(" SELECT CONCAT(p.nom,'-',p.prenom) AS nom ,id_personne FROM personne p");
+        $requete = $pdo->prepare("SELECT CONCAT(p.nom,'-',p.prenom) AS nom ,id_personne 
+FROM personne p
+WHERE NOT EXISTS(SELECT r.id_personne FROM realisateur r WHERE p.id_personne = r.id_personne)");
         $requete->execute();
         if (isset($_POST["ajouterRealisateur"])) //ajouter realisateur from name input type submit
         {

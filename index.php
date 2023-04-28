@@ -12,10 +12,14 @@ spl_autoload_register(function ($class_name)
  {
     include $class_name . '.php';
  });
+
+ session_start();
 $ctrlCinema = new CinemaController(); //La classe CinemaController contient les fonctions nécessaires pour traiter les requêtes
 $ctrlrole = new RoleController();
 $ctrlgenre=new GenreController();
 $ctrlpersonne= new PersonneController();
+$id = (isset($_GET["id"])) ? $_GET["id"] : null;
+
 if (isset($_GET["action"])) //appel suivant la requete demandée
 {
     switch ($_GET["action"]) {
@@ -29,19 +33,19 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
             $ctrlpersonne->listRealisateurs();
             break;
         case 'infoRealisateur':
-            $ctrlpersonne->infoRealisateur($_GET["id"]);
+            $ctrlpersonne->infoRealisateur($id);
             break;
         case 'infofilm':
-            $ctrlCinema->infofilm($_GET["id"]);
+            $ctrlCinema->infofilm($id);
             break;
         case 'infoActeur':
-            $ctrlpersonne->infoActeur($_GET["id"]);
+            $ctrlpersonne->infoActeur($id);
             break;
         case 'infoRole':
-            $ctrlCinema->infoRole($_GET["id"]);
+            $ctrlCinema->infoRole($id);
             break;
         case 'genre':
-            $ctrlgenre->genre($_GET["id"]);
+            $ctrlgenre->genre($id);
             break;
         case 'listGenre':
             $ctrlgenre->listGenre();

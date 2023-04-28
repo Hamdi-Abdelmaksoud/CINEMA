@@ -1,4 +1,5 @@
 <?Php
+
 ob_start();
 $realisateurs = $requete->fetchAll();
 $genres = $requeteGenre->fetchAll();
@@ -11,6 +12,8 @@ $genres = $requeteGenre->fetchAll();
     <input type="number" name="duree" id="duree" min='10' required placeholder="   durée" value="100">
     <input type="text" name="resume" id="resume" required minlength="10" placeholder="   resmuer" value="aaaaaaaaaa">
     <input type="number" id="note" name="note" min='0' max='5' placeholder="  note" value="4">
+    <!-- <label for="file">Fichier</label>
+        <input type="file" name="img"> -->
     <select name="realisateur">
         <?php
         foreach ($realisateurs as $realisateur) { ?>
@@ -29,7 +32,15 @@ $genres = $requeteGenre->fetchAll();
 </form>
 
 <?php
-
+if (isset($_SESSION['message'])) {
+    echo '<div id="message"class="alert alert-danger">' . $_SESSION['message'] . '</div>';
+    unset($_SESSION['message']);
+    echo '<script>setTimeout(function() {document.getElementById("message").remove()}, 3000);</script>';
+ }//afficher un message si le film est déja enregistré dans la base
+ else{
+    echo '<div id="message" "class=alert alert-success"><i class="fa-solid fa-check" style="color: #07a61a;"></i>film ajouté</div>';
+    echo '<script>setTimeout(function() {document.getElementById("message").remove()}, 3000);</script>';
+ }//message de success d'ajout
 $titre = "Ajouter un film";
 $titre_secondaire = "Ajouter un film";
 $contenu = ob_get_clean();

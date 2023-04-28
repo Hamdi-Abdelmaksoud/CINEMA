@@ -12,6 +12,7 @@ $realisateurs=$requete->fetchAll();
 <option value="<?=$realisateur['id_personne']?>"><?=$realisateur["nom"]?></option>
 <!--le value c'est l'id personne pour que on l'affect à le nouveau realisateur et l'affiche concatinatio du nom avec prenom as nom-->
 <?php }?>
+
     </select>
 
     <input type="submit" name="ajouterRealisateur" value="Ajouter le realisateur">

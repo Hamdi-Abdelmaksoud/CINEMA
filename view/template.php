@@ -39,7 +39,7 @@
                 <li><a class="dropdown-item text-light bg-dark" href="index.php?action=affecterRole">casting</a></li>
                 
                 
-                <li><a  class="dropdown-item text-light " h ref="index.php?action=ajouterPersonne">acteur/réalisateur</a></li>
+                <li><a  class="dropdown-item text-light " href="index.php?action=ajouterPersonne">acteur/réalisateur</a></li>
                 <li><a class="dropdown-item text-light bg-dark " href="index.php?action=ajouterActeur">acteur</a></li>
                 <li><a class="dropdown-item text-light " href="index.php?action=ajouterRealisateur">realisateur</a></li>
             </li>
