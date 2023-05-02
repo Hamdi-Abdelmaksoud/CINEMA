@@ -6,9 +6,9 @@ ob_start();
 <form enctype='multipart/from-data' action="index.php?action=ajouterPersonne" method="post">
 
     <label for="nom"></label>
-    <input type="text" name="nom" id="nom" required>
-    <input type="text" name="prenom" id="prenom" required>
-    <input type="date" name="date_naissance" id="naissance" required>
+    <input placeholder="  --Nom" type="text" name="nom" id="nom" required>
+    <input type="text" placeholder="  --Prenom" name="prenom" id="prenom" required>
+    <input type="date"   name="date_naissance" id="naissance" required>
     <select name="sexe" id="sexe">
         <option value='h'>Homme</option>
         <option value='f'>Femme</option>

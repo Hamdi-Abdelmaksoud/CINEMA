@@ -17,7 +17,7 @@ class CinemaController
         INNER JOIN realisateur r ON f.id_realisateur=r.id_realisateur
         INNER JOIN personne p ON p.id_personne=r.id_personne");
         require "view/listFilms.php";
-    }
+    } //fin listfilms
 
  
     public function infofilm($id)
@@ -48,7 +48,7 @@ WHERE c.id_film=:id_film
             "   
             SELECT f.id_realisateur,CONCAT(p.nom,'-',p.prenom) As nom
             FROM   film f
-            INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur
+            INNER JOIN realisateur r O  N r.id_realisateur = f.id_realisateur
             INNER JOIN personne p ON p.id_personne=r.id_personne
             WHERE f.id_film=:id_film"
         );
@@ -77,11 +77,16 @@ WHERE c.id_film=:id_film
         $requete->execute(["id_role" => $id]);
         require "view/infoRole.php";
     }
-
+// public function supprimerFilm()
+// {
+//     $requete=$pdo->excute("
+//     ")
+// }
 
 
     public function ajouterFilm()
     {
+    
         $pdo = Connect::seConnecter();
         $requete = $pdo->prepare(
             "SELECT CONCAT(p.nom, '-', p.prenom) AS person,p.id_personne
@@ -98,6 +103,30 @@ WHERE c.id_film=:id_film
         
         if (isset($_POST["ajoutFilm"]))
         {
+          
+            if(isset($_FILES['img']))
+            {
+                
+                $tmpNom = $_FILES["img"]["tmp_name"]; // Le nom temporaire du fichier qui sera chargé sur la machine serveur 
+                $nom = $_FILES["img"]["name"]; // Le nom original du fichier
+                $taille = $_FILES["img"]["size"]; // Sa taille en octets
+                $error = $_FILES["img"]["error"]; // Le code d'erreur associé au téléchargement
+            
+            $tabExtension = explode('.', $nom); 
+            $extension = strtolower(end($tabExtension)); 
+            $extensions = ['jpg', 'png', 'jpeg', 'gif']; 
+            $tailleMax= 2000000; // (2 Mo)
+            /* Si le fichier a bien une des extensions accepter et a une taille autorisé */
+            if(in_array($extension, $extensions) && $taille <= $tailleMax && $error == 0){
+                $uniqueName = uniqid('', true); // On donne un identifiant unique pour l'image
+                $fileUnique = $uniqueName . "." . $extension;
+                move_uploaded_file($tmpNom, './public/img/'.$fileUnique); // On déplace le fichier dans un dossier que l'on a créer
+                $adresseImage = "./public/img/" . $fileUnique; // On stocke le chemin de l'image
+            }
+            if(!isset($cheminImage)){
+                $adresseImage = NULL;
+            }
+            }          
             
             $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $annee = filter_input(INPUT_POST, "annee_sortie_fr", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -106,9 +135,9 @@ WHERE c.id_film=:id_film
             $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_INT);
             $id = filter_input(INPUT_POST, "realisateur", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $genre=filter_input(INPUT_POST, "genre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $img=filter_input(INPUT_POST, "img",  FILTER_SANITIZE_URL);
           
-            if ($titre && $annee && $duree && $resume && $note && $id) 
+         
+            if ($titre && $annee && $duree && $resume && $note && $id ) 
             {
                 //avant :l'ajout de film on vérifie si il existe déja dans la base
                     $requeteExiste=$pdo->prepare(
@@ -127,7 +156,7 @@ WHERE c.id_film=:id_film
                 {
                 
                 $requeteFilm = $pdo->prepare(
-                    "INSERT INTO film(titre,annee_sortie_fr,duree,resume,note,id_realisateur) VALUES(:titre,:annee_sortie_fr,:duree,:resume,:note,:id_realisateur)"
+                    "INSERT INTO film(titre,annee_sortie_fr,duree,resume,note,id_realisateur,image) VALUES(:titre,:annee_sortie_fr,:duree,:resume,:note,:id_realisateur,:img)"
                 );//ajouter un film
                 $requeteFilm->execute([
                     "titre" => $titre,
@@ -135,7 +164,8 @@ WHERE c.id_film=:id_film
                     "duree" => $duree,
                     "resume" => $resume,
                     "note" => $note,
-                    "id_realisateur"=>$id
+                    "id_realisateur"=>$id,
+                    "img"=>$adresseImage
                 ]);
                 $film=$pdo->lastInsertId();//pour récupérer le id du film ajouter
                 $requeteclasser=$pdo->prepare(

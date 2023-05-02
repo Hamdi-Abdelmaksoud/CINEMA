@@ -4,13 +4,8 @@ ob_start(); //Cette fonction démarre un tampon de sortie de sortie de bufferisa
 $genres=$requete->fetchAll();
 
 ?>
-<table class="uk-label uk-label-warning" style="font-weight: bold;">
-<thead>
-        <tr>
-            <th>genre</th>
-            
-        </tr>
-    </thead>
+<table class="table table-dark"style="font-weight: bold;max-width :15 0px;">
+ 
     <tbody>
         <?php foreach($genres as $genre){?>
             <tr>

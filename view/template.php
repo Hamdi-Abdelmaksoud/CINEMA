@@ -45,20 +45,14 @@
             </li>
          
         </ul>
+       
     </ul>
 </nav>
 
 
 
 </nav>
-<!-- <li>
-    <div>filter
-        <select name="genre" id="genre">
-            <option value="action"><a href="index.php?action=genre"> action</a></option>
-            <option value="romance"><a href="index.php?action=genre"> romance</a></option>
-        </select>
-    </div> 
-</li>-->
+ 
 <div style="display:flex;">
 <div style="width: 150px;min-width: heigth 100px;margin-top:5%;"class="bg-opacity-25">
 

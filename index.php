@@ -71,6 +71,7 @@ if (isset($_GET["action"])) //appel suivant la requete demandée
         case 'affecterRole':
             $ctrlrole->affecterRole();
             break;
+        
 
 
     }
