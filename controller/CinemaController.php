@@ -123,7 +123,7 @@ WHERE c.id_film=:id_film
                 move_uploaded_file($tmpNom, './public/img/'.$fileUnique); // On déplace le fichier dans un dossier que l'on a créer
                 $adresseImage = "./public/img/" . $fileUnique; // On stocke le chemin de l'image
             }
-            if(!isset($cheminImage)){
+            if(!isset($adresseImage)){
                 $adresseImage = NULL;
             }
             }          

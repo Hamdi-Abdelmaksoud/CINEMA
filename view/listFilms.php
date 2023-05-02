@@ -17,15 +17,16 @@ ob_start(); //Cette fonction démarre un tampon de sortie de sortie de bufferisa
     <tbody>
         <?php
         foreach ($requete->fetchAll() as $film) { ?><!--fletchAll() pour obtenir plusieurs ligne-->
+       
+        
             <tr>
                 <td><a href="index.php?action=infofilm&id=<?= $film["id_film"] ?>" ><?= $film["titre"] ?></a></td> <!--Cette ligne affiche le titre du film stocké dans la variable $film.-->
                 <td><?= $film["annee_sortie_fr"] ?></td>
                 <td><?= $film["resume"] ?></td>
                 <td><a href="index.php?action=infoRealisateur&id=<?=$film['id_realisateur']?>"><?= $film["nom"] ?></a></td>
-                <?php
-                if($film['image']!=NULL)
-                {var_dump($film['image']);die;} ?>
-                <td><img src="<?=$film['image']?>"></td>
+                
+            
+                <td><img style="width: 30px;heigth:30px;" src="<?=$film['image']?>"></td>
             </tr>
         <?php } ?>
 
