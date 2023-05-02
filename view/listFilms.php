@@ -11,6 +11,7 @@ ob_start(); //Cette fonction démarre un tampon de sortie de sortie de bufferisa
             <th>ANNE SORTIE</th>
             <th>resumé</th>
             <th>réalisateur</th>
+            <th>affiche</th>
         </tr>
     </thead>
     <tbody>
