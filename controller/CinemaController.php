@@ -48,7 +48,7 @@ WHERE c.id_film=:id_film
             "   
             SELECT f.id_realisateur,CONCAT(p.nom,'-',p.prenom) As nom
             FROM   film f
-            INNER JOIN realisateur r O  N r.id_realisateur = f.id_realisateur
+            INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur
             INNER JOIN personne p ON p.id_personne=r.id_personne
             WHERE f.id_film=:id_film"
         );
