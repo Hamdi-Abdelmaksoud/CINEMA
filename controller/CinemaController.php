@@ -176,6 +176,7 @@ WHERE c.id_film=:id_film
                     "genre"=>$genre
 
                 ]);
+                $_SESSION['message']="bien";
             }
             }
         } // fin if

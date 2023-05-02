@@ -32,12 +32,22 @@ $genres = $requeteGenre->fetchAll();
 </form>
 
 <?php
-if (isset($_SESSION['message'])) {
+if (isset($_SESSION['message']))
+ {
+    if($_SESSION['message']=="bien")
+    {
+        echo '<div id="message" class="alert alert-success" >' ."Le film à été bien ajouté" . '</div>';
+        unset($_SESSION['message']);
+        echo '<script>setTimeout(function() {document.getElementById("message").remove()}, 2000);</script>';
+    }
+     else
+     {
     echo '<div id="message"class="alert alert-danger">' . $_SESSION['message'] . '</div>';
     unset($_SESSION['message']);
     echo '<script>setTimeout(function() {document.getElementById("message").remove()}, 2000);</script>';
+    }
  }//afficher un message si le film est déja enregistré dans la base
-
+else 
 $titre = "Ajouter un film";
 $titre_secondaire = "Ajouter un film";
 $contenu = ob_get_clean();
